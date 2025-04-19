@@ -1,0 +1,22 @@
+---
+
+- name: "Labratory Setup"
+  hosts: labratory
+  gather_facts: false
+  pre_tasks:
+    - name: "Check for Python"
+      raw: "test -e /usr/bin/python3"
+      changed_when: false
+      ignore_errors: yes
+      failed_when: false
+      register: has_python
+      tags: [ never, bootstrap ]
+    - name: "Ensure Python"
+      ansible.builtin.raw: 'su -lc "apt-get -qq install python3"'
+      when: has_python.rc != 0
+      tags: [ never, bootstrap ]
+    - name: "Get facts"
+      ansible.builtin.setup:
+        gather_timeout: 10
+  roles:
+    - role: linux_security

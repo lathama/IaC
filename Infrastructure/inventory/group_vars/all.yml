@@ -1,0 +1,56 @@
+---
+
+# General variables for all uses
+# These could be overridden if needed
+
+my_root_pass: "this should be set in your vault.yml not plaintext"
+
+ansible_become: true
+ansible_become_method: "su"
+ansible_become_user: "root"
+ansible_become_pass: "{{ my_root_pass }}"
+ansible_user: "iac"
+banned_services:
+  - "screen"
+  - "tmux"
+debian_purge_packages:
+  - "screen"
+  - "tmux"
+  - "samba-common"
+  - "python3-samba"
+  - "samba-dsdb-modules"
+redhat_purge_packages:
+  - "screen"
+  - "tmux"
+default_editor: "vim"
+domain_name: "example.com"
+grub_timeout: 0
+nameserver: 
+  - "8.8.4.4"
+  - "8.8.8.8"
+  - "9.9.9.9"
+  - "1.1.1.1"
+ntpserver:
+  - "0.us.pool.ntp.org"
+  - "1.us.pool.ntp.org"
+  - "2.us.pool.ntp.org"
+  - "3.us.pool.ntp.org"
+
+users:
+  - append: no
+    comment: "IaC User"
+    create_home: yes
+    expires: -1
+    force: true
+    generate_ssh_key: no
+    group: "iac"
+    groups: ["iac"]
+    home: "/home/iac"
+    local: no
+    name: "iac"
+    # password: "lala"
+    password_lock: false
+    remove: no
+    shell: "/bin/bash"
+    state: present
+    #uid: "12345" changing after creation is not fun

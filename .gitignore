@@ -1,0 +1,13 @@
+# https://git-scm.com/docs/gitignore
+# Ignore items so that they do not cause confusion
+
+# Ansible has retry files on failure
+*.retry
+
+# This configuration uses a local directory for all temp data
+.ansible
+
+# Never checkin your ansible vault secret file
+.ansible_vault
+.hint
+vault.raw.yml

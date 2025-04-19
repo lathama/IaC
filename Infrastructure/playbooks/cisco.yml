@@ -1,0 +1,21 @@
+---
+
+# Noting the inventory group vars cisco.yml
+# login to a really old Cisco switch and get some info
+# using the raw command to list the directory
+# we are making no changes so we ignore changes
+# printing out the result we only want the stdout_lines
+
+# This is an example of the flexiblity.
+
+- name: 'Legacy device info'
+  hosts: cisco
+  gather_facts: false
+  tasks:
+    - name: 'List filesystem'
+      ansible.builtin.raw: 'dir'
+      changed_when: false
+      register: result
+    - name: 'Print out the directory'
+      ansible.builtin.debug:
+        var: result.stdout_lines

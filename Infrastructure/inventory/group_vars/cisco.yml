@@ -1,0 +1,5 @@
+---
+
+# Add old ciphers to enable access to legacy hosts.
+
+ansible_ssh_common_args: "-o KexAlgorithms=+diffie-hellman-group1-sha1 -c aes256-cbc"

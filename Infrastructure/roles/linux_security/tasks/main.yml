@@ -1,0 +1,26 @@
+---
+
+# A firm way of ensuring tooling is absent on systems.
+# The number of times I have found production services running in tmux or
+# screen under a user is amazing.
+
+- name: "Kill banned services"
+  ansible.builtin.shell: "pkill -f {{ item }}"
+  with_items: "{{ banned_services }}"
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+
+- name: "Packages to remove DEB based"
+  ansible.builtin.apt: 
+    name: '{{ debian_purge_packages }}'
+    state: absent
+    purge: true
+    autoremove: true
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: "Packages to remove RPM based"
+  ansible.builtin.yum: 
+    name: '{{ redhat_purge_packages }}'
+    state: absent
+  when: ansible_facts['os_family'] == "RedHat"

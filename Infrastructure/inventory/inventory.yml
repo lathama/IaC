@@ -1,0 +1,19 @@
+---
+# Documentation helps
+# group_vars/all.yml applies to all hosts
+# group_vars/vault.yml is an ecrypted vault file which is loaded
+# to populate the secrets here.
+
+vault:
+  children:
+    servers:
+      hosts:
+        mysuperserverdnsname.example.com:
+          ansible_host: "192.168.15.127"
+          ansible_user: "iac"
+    switches:
+      children:
+        cisco:
+          hosts:
+            oldciscoswitch1.example.com:
+            oldciscoswitch1.example.com:

@@ -1,0 +1,8 @@
+---
+
+- name: "Print all Ansible available facts"
+  hosts: all
+  tasks:
+    - name: "Print out the facts"
+      debug:
+        var: ansible_facts
