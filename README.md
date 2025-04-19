@@ -30,3 +30,4 @@ of any disaster.
 
 - https://en.wikipedia.org/wiki/Out-of-band_management
 - https://en.wikipedia.org/wiki/Infrastructure_as_code
+- https://github.com/lathama/IaC
